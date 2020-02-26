@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Credit to Yvridio for this amazing code!
 // https://answers.unity.com/questions/196381/how-do-i-check-if-my-rigidbody-player-is-grounded.html
@@ -22,12 +23,15 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject playerCam;
+    public Slider healthSlider;
 
     public float lookSensitivity = 1f;
     public float maxVerticalAngle = 60f;
     public float movementSpeed = 180f;
     public bool isInControl = true;
     public float jumpSpeed;
+    public int maxHealth;
+    private int health;
 
     private float distToGround;
 
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         distToGround = GetComponent<Collider>().bounds.extents.y;
+        health = maxHealth;
     }
 
     private void FixedUpdate()
@@ -116,5 +121,11 @@ public class PlayerController : MonoBehaviour
         {
             Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, jumpSpeed, Rigidbody.velocity.z);
         }
+    }
+
+    private void SetHealth (int health)
+    {
+        this.health = health;
+        healthSlider.value = health;
     }
 }
