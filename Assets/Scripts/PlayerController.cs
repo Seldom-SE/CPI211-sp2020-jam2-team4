@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Credit to Yvridio for this amazing code!
+// https://answers.unity.com/questions/196381/how-do-i-check-if-my-rigidbody-player-is-grounded.html
 
 /// <summary>
 /// This script will control the player's movement which involves
