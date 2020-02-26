@@ -30,8 +30,12 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 180f;
     public bool isInControl = true;
     public float jumpSpeed;
+
     public int maxHealth;
     private int health;
+    public int ammo = 30;
+    public int zombie1Killed;
+    public int zombie2Killed;
 
     private float distToGround;
 
@@ -127,5 +131,20 @@ public class PlayerController : MonoBehaviour
     {
         this.health = health;
         healthSlider.value = health;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "HealthPowerUp")
+        {
+            if (health < 70)
+                SetHealth(health + 30);
+            else
+                SetHealth(100);
+        }
+        else if (col.gameObject.name == "AmmoPowerUp")
+        {
+            ammo = 30;
+        }
     }
 }
