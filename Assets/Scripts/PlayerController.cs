@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 180f;
     public bool isInControl = true;
     public float jumpSpeed;
+    public int hp = 100;
+    public int ammo = 30;
+    public int zombie1Killed;
+    public int zombie2Killed;
 
     private float distToGround;
 
@@ -115,6 +119,21 @@ public class PlayerController : MonoBehaviour
         if (jump && grounded)
         {
             Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, jumpSpeed, Rigidbody.velocity.z);
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "HealthPowerUp")
+        {
+            if (hp < 70)
+                hp += 30;
+            else
+                hp = 100;
+        }
+        else if (col.gameObject.name == "AmmoPowerUp")
+        {
+            ammo = 30;
         }
     }
 }
