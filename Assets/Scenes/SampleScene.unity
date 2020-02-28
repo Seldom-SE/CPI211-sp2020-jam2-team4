@@ -424,6 +424,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2508147544210124468, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508147544210124468, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511658522174616839, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610503762816074078, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729339548304591511, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184794509027340762, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838217527973793188, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112434453482054180, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488943426265830840, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9113879045867805376, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -478,6 +523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113879045867805383, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9113879045867805389, guid: 9f8727e3c422f4c08a75c1b7b39eec24,
         type: 3}
