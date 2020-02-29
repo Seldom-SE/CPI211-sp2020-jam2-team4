@@ -6,6 +6,10 @@ public class Enemy1 : MonoBehaviour
 {
     private int numShot;
 
+    public GameObject powerUp;
+    public AudioClip deadZombie;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +27,17 @@ public class Enemy1 : MonoBehaviour
             }
             else if (numShot == 2)
             {
-                col.gameObject.GetComponent<PlayerController>().zombie1Killed++;
+                int killedEnemy = col.gameObject.GetComponent<PlayerController>().zombie1Killed;
+                if (killedEnemy < 2)
+                {
+                    killedEnemy++;
+                }
+                else
+                {
+                    killedEnemy = 0;
+                    Instantiate(powerUp, transform.position, transform.rotation);
+                }
+                audioSource.PlayOneShot(deadZombie, 0.5f);
                 Destroy(gameObject);
             }
         }

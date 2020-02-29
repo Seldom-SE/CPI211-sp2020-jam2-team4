@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
+    public GameObject powerUp;
+    public AudioClip deadZombie;
+    AudioSource audioSource;
+
     private int numShot;
 
     // Start is called before the first frame update
@@ -23,7 +27,17 @@ public class Enemy2 : MonoBehaviour
             }
             else if (numShot == 2)
             {
-                col.gameObject.GetComponent<PlayerController>().zombie2Killed++;
+                int killedEnemy = col.gameObject.GetComponent<PlayerController>().zombie2Killed;
+                if (killedEnemy < 2)
+                {
+                    killedEnemy++;
+                }
+                else
+                {
+                    killedEnemy = 0;
+                    Instantiate(powerUp, transform.position, transform.rotation);
+                }
+                audioSource.PlayOneShot(deadZombie, 0.5f);
                 Destroy(gameObject);
             }
         }

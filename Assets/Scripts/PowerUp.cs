@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    public AudioClip collected;
+    AudioSource audioSource;
 
     private Rigidbody body;
 
@@ -18,6 +20,7 @@ public class PowerUp : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Destroy(this);
+            audioSource.PlayOneShot(collected, 0.5f);
         }
     }
 

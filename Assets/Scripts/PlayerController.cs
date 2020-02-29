@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     public int maxHealth;
     private int health;
     public int ammo = 30;
-    public int zombie1Killed;
-    public int zombie2Killed;
+    public int zombie1Killed = 0;
+    public int zombie2Killed = 0;
 
     private float distToGround;
 

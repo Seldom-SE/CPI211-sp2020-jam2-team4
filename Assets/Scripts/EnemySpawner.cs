@@ -7,6 +7,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject spawnee;
     public float spawnTime;
     public float spawnDelay;
+    public AudioClip spawnZombie;
+    AudioSource audioSource;
+
     private int enemyInRoom;
 
     // Start is called before the first frame update
@@ -20,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Instantiate(spawnee, transform.position, transform.rotation);
         enemyInRoom++;
+        audioSource.PlayOneShot(spawnZombie, 0.5f);
 
         if (enemyInRoom == 36)
         {
