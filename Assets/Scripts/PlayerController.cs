@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-// Credit to Yvridio for this amazing code!
+// Credit to Yvridio for the file some of this code was originally based on.
 // https://answers.unity.com/questions/196381/how-do-i-check-if-my-rigidbody-player-is-grounded.html
 
 /// <summary>
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerCam;
     public Slider healthSlider;
+    public Text healthText;
+    public GameObject[] ammoIndicators;
+    public Text killCounter;
+    public Text tutorialText;
+
+    private bool level3;
 
     public float lookSensitivity = 1f;
     public float maxVerticalAngle = 60f;
@@ -34,8 +41,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth;
     private int health;
     public int ammo = 30;
-    public int zombie1Killed = 0;
-    public int zombie2Killed = 0;
+    public int zombiesKilled = 0;
 
     private float distToGround;
 
@@ -48,7 +54,19 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         distToGround = GetComponent<Collider>().bounds.extents.y;
-        health = maxHealth;
+        SetHealth(maxHealth);
+        SetAmmo(ammo);
+        if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            level3 = true;
+            tutorialText.text = "Kill as many zombies as you can!";
+            SetZombiesKilled(48);
+        }
+        else
+        {
+            level3 = false;
+            tutorialText.text = "Use WASD and mouse to move. Click to shoot. Can you see a pattern for which zombies drop what powerups in what situations?";
+        }
     }
 
     private void FixedUpdate()
@@ -72,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
+        bool mouseClick = Input.GetMouseButtonDown(0);
 
         //This moves the PLAYER gameobject's rotation
         if (mouseX != 0)
@@ -97,6 +116,10 @@ public class PlayerController : MonoBehaviour
              */
             if (newRotation.x < maxVerticalAngle || newRotation.x > 360 - maxVerticalAngle)
                 playerCam.transform.localEulerAngles = newRotation;
+        }
+        if (mouseClick && ammo > 0)
+        {
+            SetAmmo(ammo - 1);
         }
     }
 
@@ -131,13 +154,53 @@ public class PlayerController : MonoBehaviour
     {
         this.health = health;
         healthSlider.value = health;
+        healthText.text = health.ToString();
+    }
+
+    private void SetAmmo (int ammo)
+    {
+        this.ammo = ammo;
+        for (int i = 0; i < ammo; i++)
+        {
+            ammoIndicators[i].SetActive(true);
+        }
+        for (int i = ammo; i < ammoIndicators.Length; i++)
+        {
+            ammoIndicators[i].SetActive(false);
+        }
+    }
+
+    private void SetZombiesKilled (int zombiesKilled)
+    {
+        this.zombiesKilled = zombiesKilled;
+        if (level3)
+        {
+            killCounter.text = "Kills: " + zombiesKilled;
+        }
+        else
+        {
+            if (zombiesKilled >= 24)
+            {
+                killCounter.text = "Climb the stairs to progress to the next floor!";
+            }
+            else
+            {
+                killCounter.text = "Kills Remaining: " + (24 - zombiesKilled);
+            }
+        }
+    }
+
+    public int IncrementZombiesKilled ()
+    {
+        SetZombiesKilled(zombiesKilled + 1);
+        return zombiesKilled;
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "HealthPowerUp")
         {
-            if (health < 70)
+            if (health <= 70)
                 SetHealth(health + 30);
             else
                 SetHealth(100);
