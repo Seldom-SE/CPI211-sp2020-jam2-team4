@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc0876ff4b2fc54784f3924f8d135ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 180628154579797851, guid: a77aca119b2508442b6c2fffc8ac312c, type: 3}
   deadZombie: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!1 &1554714658104086569
