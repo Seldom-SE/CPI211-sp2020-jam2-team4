@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 180f;
     public bool isInControl = true;
     public float jumpSpeed;
-    private bool mouseClick;
 
     public int maxHealth;
     private int health;
@@ -75,7 +74,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        mouseClick = Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonDown(0) && ammo > 0)
+        {
+            SetAmmo(ammo - 1);
+            GameObject bullet = Instantiate(this.bullet);
+            Transform cameraTrans = playerCam.transform;
+            bullet.transform.position = new Vector3(cameraTrans.position.x, cameraTrans.position.y, cameraTrans.position.z);
+            bullet.transform.rotation = new Quaternion(cameraTrans.rotation.x, cameraTrans.rotation.y, cameraTrans.rotation.z, cameraTrans.rotation.w);
+            Physics.IgnoreCollision(playerCollider, bullet.GetComponent<Collider>());
+        }
     }
 
     private void FixedUpdate()
@@ -124,16 +131,6 @@ public class PlayerController : MonoBehaviour
              */
             if (newRotation.x < maxVerticalAngle || newRotation.x > 360 - maxVerticalAngle)
                 playerCam.transform.localEulerAngles = newRotation;
-        }
-        if (mouseClick && ammo > 0)
-        {
-            mouseClick = false;
-            SetAmmo(ammo - 1);
-            GameObject bullet = Instantiate(this.bullet);
-            Transform cameraTrans = playerCam.transform;
-            bullet.transform.position = new Vector3(cameraTrans.position.x, cameraTrans.position.y, cameraTrans.position.z);
-            bullet.transform.rotation = new Quaternion(cameraTrans.rotation.x, cameraTrans.rotation.y, cameraTrans.rotation.z, cameraTrans.rotation.w);
-            Physics.IgnoreCollision(playerCollider, bullet.GetComponent<Collider>());
         }
     }
 
