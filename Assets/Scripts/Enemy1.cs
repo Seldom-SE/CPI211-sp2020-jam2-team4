@@ -21,7 +21,7 @@ public class Enemy1 : Enemy
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            if (numShot < 1)
+            if (numShot < 2)
             {
                 numShot++;
             }
@@ -29,7 +29,7 @@ public class Enemy1 : Enemy
             {
                 PlayerController playerController = player.GetComponent<PlayerController>();
                 int killedEnemy = playerController.IncrementZombiesKilled();
-                if (killedEnemy % 2 == 0)
+                if (killedEnemy % 3 == 0)
                 {
                     Instantiate(powerUp, transform.position, transform.rotation);
                 }
