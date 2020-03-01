@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Credit to Yvridio for this amazing code!
+// Credit to Yvridio for the file some of this code was originally based on.
 // https://answers.unity.com/questions/196381/how-do-i-check-if-my-rigidbody-player-is-grounded.html
 
 /// <summary>
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         distToGround = GetComponent<Collider>().bounds.extents.y;
-        health = maxHealth;
+        SetHealth(maxHealth);
     }
 
     private void FixedUpdate()
