@@ -560,13 +560,13 @@ Transform:
   m_GameObject: {fileID: 9113879045867805389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.3, z: 17.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 2}
   m_Children:
   - {fileID: 9113879044223042047}
   - {fileID: 4729339548304591511}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &9113879045867805377
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -660,7 +660,10 @@ MonoBehaviour:
   healthSlider: {fileID: 8927057686226415342}
   lookSensitivity: 400
   maxVerticalAngle: 60
-  movementSpeed: 5
+  movementSpeed: 10
   isInControl: 1
   jumpSpeed: 5
-  maxHealth: 0
+  maxHealth: 100
+  ammo: 30
+  zombie1Killed: 0
+  zombie2Killed: 0
