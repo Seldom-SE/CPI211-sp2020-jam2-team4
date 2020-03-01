@@ -1,33 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject spawnee;
     public float spawnTime;
-    public float spawnDelay;
-    public AudioClip spawnZombie;
-    public AudioSource audioSource;
 
-    private int enemyInRoom;
+    private int spawns;
+    private bool level3;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyInRoom = 0;
-        InvokeRepeating("SpawnEnemy", spawnTime, spawnDelay);
+        if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            level3 = true;
+        }
+
+        spawns = 0;
+        Invoke("SpawnEnemy", Mathf.Max(spawnTime - Time.timeSinceLevelLoad * 0.1f, spawnTime * 0.3f));
     }
 
     public void SpawnEnemy()
     {
         Instantiate(spawnee, transform.position, transform.rotation);
-        enemyInRoom++;
-        audioSource.PlayOneShot(spawnZombie, 0.5f);
+        spawns++;
 
-        if (enemyInRoom == 36)
+        if (spawns < 6)
         {
-            CancelInvoke("SpawnEnemy");
+            Invoke("SpawnEnemy", Mathf.Max(spawnTime - Time.timeSinceLevelLoad * 0.1f, spawnTime * 0.3f));
         }
     }
 }
