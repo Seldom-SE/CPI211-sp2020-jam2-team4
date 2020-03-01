@@ -96,6 +96,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (hurtTimer > 0) hurtTimer--;
+
+        if (transform.position.y < -2) SetHealth(0);
     }
 
     /// <summary>
