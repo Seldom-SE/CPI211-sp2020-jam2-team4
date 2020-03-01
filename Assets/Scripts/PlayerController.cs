@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private int health;
     public int ammo = 30;
     public int zombiesKilled = 0;
+    private int hurtTimer;
 
     private float distToGround;
 
@@ -92,6 +93,8 @@ public class PlayerController : MonoBehaviour
             MouseControl();
             MovementControl();
         }
+
+        if (hurtTimer > 0) hurtTimer--;
     }
 
     /// <summary>
@@ -219,6 +222,11 @@ public class PlayerController : MonoBehaviour
         else if (col.gameObject.name == "AmmoPowerUp")
         {
             ammo = 30;
+        }
+        else if (col.gameObject.CompareTag("Enemy") && hurtTimer <= 0)
+        {
+            SetHealth(health - 5);
+            hurtTimer = 30;
         }
     }
 }
