@@ -9,15 +9,15 @@ public class PowerUp : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.CompareTag("Player"))
         {
-            Destroy(this);
             audioSource.PlayOneShot(collected, 0.5f);
+            Destroy(gameObject);
         }
     }
 
     void FixedUpdate()
     {
-        transform.RotateAround(transform.position, transform.up, Time.deltaTime * 90f);
+        transform.RotateAround(transform.position, transform.up, Time.fixedDeltaTime * 90f);
     }
 }

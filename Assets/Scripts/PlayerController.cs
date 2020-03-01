@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         this.zombiesKilled = zombiesKilled;
         if (level3)
         {
-            killCounter.text = "Kills: " + zombiesKilled;
+            killCounter.text = "Total Kills: " + zombiesKilled;
         }
         else
         {
@@ -222,16 +222,16 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "HealthPowerUp")
+        if (col.gameObject.CompareTag("HealthPowerUp"))
         {
             if (health <= 70)
                 SetHealth(health + 30);
             else
                 SetHealth(100);
         }
-        else if (col.gameObject.name == "AmmoPowerUp")
+        else if (col.gameObject.CompareTag("AmmoPowerUp"))
         {
-            ammo = 30;
+            SetAmmo(30);
         }
         else if (col.gameObject.CompareTag("Enemy") && hurtTimer <= 0)
         {

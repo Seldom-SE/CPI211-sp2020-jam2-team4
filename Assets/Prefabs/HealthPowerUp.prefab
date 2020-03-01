@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1812172579772116540}
   - component: {fileID: 749728792390282489}
   - component: {fileID: 7226809473984003734}
+  - component: {fileID: 3419241244244188959}
   m_Layer: 0
   m_Name: HealthPowerUp
-  m_TagString: Untagged
+  m_TagString: HealthPowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,3 +94,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3419241244244188959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180628154579797851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cbc8dd96b61184e9023d204b2b25bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: {fileID: 0}
+  audioSource: {fileID: 0}
