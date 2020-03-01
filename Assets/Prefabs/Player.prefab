@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2137,8 +2137,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Use WASD and mouse to move. Click to shoot. Can you see a pattern how zombies
-    drop certain powerups in certain situations?
+  m_Text: Use WASD and mouse to move. Click to shoot. Can you see a pattern for which
+    zombies drop what powerups in what situations?
 --- !u!1 &5253642700507533854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,6 +3307,7 @@ MonoBehaviour:
   - {fileID: 3780609064751408131}
   killCounter: {fileID: 7315279016420991042}
   tutorialText: {fileID: 1434662213555803711}
+  barrier: {fileID: 0}
   bullet: {fileID: 3298190381387373195, guid: ea4786fc082c9435a90629bebe5f4ed7, type: 3}
   lookSensitivity: 400
   maxVerticalAngle: 60
