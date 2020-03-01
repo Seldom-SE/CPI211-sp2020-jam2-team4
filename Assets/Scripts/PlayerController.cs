@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] ammoIndicators;
     public Text killCounter;
     public Text tutorialText;
+    public GameObject barrier;
 
     public GameObject bullet;
 
@@ -95,6 +96,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (hurtTimer > 0) hurtTimer--;
+
+        if (transform.position.y < -2) SetHealth(0);
     }
 
     /// <summary>
@@ -169,6 +172,12 @@ public class PlayerController : MonoBehaviour
         this.health = health;
         healthSlider.value = health;
         healthText.text = health.ToString();
+
+        if (health <= 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene("Game Over");
+        }
     }
 
     private void SetAmmo (int ammo)
@@ -196,6 +205,7 @@ public class PlayerController : MonoBehaviour
             if (zombiesKilled >= 24)
             {
                 killCounter.text = "Climb the stairs to progress to the next floor!";
+                barrier.SetActive(false);
             }
             else
             {
@@ -225,7 +235,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Enemy") && hurtTimer <= 0)
         {
-            SetHealth(health - 5);
+            SetHealth(health - 10);
             hurtTimer = 30;
         }
     }
