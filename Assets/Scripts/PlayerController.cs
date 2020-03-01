@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
     public int IncrementZombiesKilled ()
     {
-        SetZombiesKilled(zombiesKilled + 1);
+        SetZombiesKilled(zombiesKilled);
         return zombiesKilled;
     }
 
@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Enemy") && hurtTimer <= 0)
         {
-            SetHealth(health - 5);
+            SetHealth(health - 10);
             hurtTimer = 30;
         }
     }
