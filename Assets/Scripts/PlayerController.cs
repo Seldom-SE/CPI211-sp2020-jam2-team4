@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerCam;
     public Slider healthSlider;
+    public Text healthText;
 
     public float lookSensitivity = 1f;
     public float maxVerticalAngle = 60f;
@@ -131,13 +132,14 @@ public class PlayerController : MonoBehaviour
     {
         this.health = health;
         healthSlider.value = health;
+        healthText.text = health.ToString();
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "HealthPowerUp")
         {
-            if (health < 70)
+            if (health <= 70)
                 SetHealth(health + 30);
             else
                 SetHealth(100);
