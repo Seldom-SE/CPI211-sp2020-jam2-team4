@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    public static int savedScore;
+
     public Rigidbody Rigidbody
     {
         get
@@ -176,6 +178,8 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Cursor.lockState = CursorLockMode.None;
+            savedScore = zombiesKilled;
+            if (SceneManager.GetActiveScene().name == "Level2") savedScore += 24;
             SceneManager.LoadScene("Game Over");
         }
     }
