@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Credit to Yvridio for the file some of this code was originally based on.
 // https://answers.unity.com/questions/196381/how-do-i-check-if-my-rigidbody-player-is-grounded.html
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public Slider healthSlider;
     public Text healthText;
     public GameObject[] ammoIndicators;
+    public Text killCounter;
+    public Text tutorialText;
+
+    private bool level3;
 
     public float lookSensitivity = 1f;
     public float maxVerticalAngle = 60f;
@@ -51,6 +56,17 @@ public class PlayerController : MonoBehaviour
         distToGround = GetComponent<Collider>().bounds.extents.y;
         SetHealth(maxHealth);
         SetAmmo(ammo);
+        if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            level3 = true;
+            tutorialText.text = "Kill as many zombies as you can!";
+            SetZombiesKilled(48);
+        }
+        else
+        {
+            level3 = false;
+            tutorialText.text = "Use WASD and mouse to move. Click to shoot. Can you see a pattern for which zombies drop what powerups in what situations?";
+        }
     }
 
     private void FixedUpdate()
@@ -152,6 +168,32 @@ public class PlayerController : MonoBehaviour
         {
             ammoIndicators[i].SetActive(false);
         }
+    }
+
+    private void SetZombiesKilled (int zombiesKilled)
+    {
+        this.zombiesKilled = zombiesKilled;
+        if (level3)
+        {
+            killCounter.text = "Kills: " + zombiesKilled;
+        }
+        else
+        {
+            if (zombiesKilled >= 24)
+            {
+                killCounter.text = "Climb the stairs to progress to the next floor!";
+            }
+            else
+            {
+                killCounter.text = "Kills Remaining: " + (24 - zombiesKilled);
+            }
+        }
+    }
+
+    public int IncrementZombiesKilled ()
+    {
+        SetZombiesKilled(zombiesKilled + 1);
+        return zombiesKilled;
     }
 
     void OnCollisionEnter(Collision col)

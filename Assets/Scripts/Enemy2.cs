@@ -27,7 +27,8 @@ public class Enemy2 : MonoBehaviour
             }
             else
             {
-                int killedEnemy = ++col.gameObject.GetComponent<PlayerController>().zombiesKilled;
+                PlayerController player = col.gameObject.GetComponent<PlayerController>();
+                int killedEnemy = player.IncrementZombiesKilled();
                 if (killedEnemy % 3 == 0)
                 {
                     Instantiate(powerUp, transform.position, transform.rotation);
