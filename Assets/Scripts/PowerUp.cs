@@ -5,15 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     public AudioClip collected;
-    AudioSource audioSource;
-
-    private Rigidbody body;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        body = GetComponent<Rigidbody>();
-    }
+    public AudioSource audioSource;
 
     void OnCollisionEnter(Collision col)
     {

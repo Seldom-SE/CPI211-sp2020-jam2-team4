@@ -22,13 +22,15 @@ public class PlayerController : MonoBehaviour
             return GetComponent<Rigidbody>();
         }
     }
-
+    private Collider playerCollider;
     public GameObject playerCam;
     public Slider healthSlider;
     public Text healthText;
     public GameObject[] ammoIndicators;
     public Text killCounter;
     public Text tutorialText;
+
+    public GameObject bullet;
 
     private bool level3;
 
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 180f;
     public bool isInControl = true;
     public float jumpSpeed;
+    private bool mouseClick;
 
     public int maxHealth;
     private int health;
@@ -53,7 +56,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        distToGround = GetComponent<Collider>().bounds.extents.y;
+        playerCollider = GetComponent<Collider>();
+        distToGround = playerCollider.bounds.extents.y;
         SetHealth(maxHealth);
         SetAmmo(ammo);
         if (SceneManager.GetActiveScene().name == "Level3")
@@ -67,6 +71,11 @@ public class PlayerController : MonoBehaviour
             level3 = false;
             tutorialText.text = "Use WASD and mouse to move. Click to shoot. Can you see a pattern for which zombies drop what powerups in what situations?";
         }
+    }
+
+    private void Update()
+    {
+        mouseClick = Input.GetMouseButtonDown(0);
     }
 
     private void FixedUpdate()
@@ -90,7 +99,6 @@ public class PlayerController : MonoBehaviour
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
-        bool mouseClick = Input.GetMouseButtonDown(0);
 
         //This moves the PLAYER gameobject's rotation
         if (mouseX != 0)
@@ -119,7 +127,13 @@ public class PlayerController : MonoBehaviour
         }
         if (mouseClick && ammo > 0)
         {
+            mouseClick = false;
             SetAmmo(ammo - 1);
+            GameObject bullet = Instantiate(this.bullet);
+            Transform cameraTrans = playerCam.transform;
+            bullet.transform.position = new Vector3(cameraTrans.position.x, cameraTrans.position.y, cameraTrans.position.z);
+            bullet.transform.rotation = new Quaternion(cameraTrans.rotation.x, cameraTrans.rotation.y, cameraTrans.rotation.z, cameraTrans.rotation.w);
+            Physics.IgnoreCollision(playerCollider, bullet.GetComponent<Collider>());
         }
     }
 

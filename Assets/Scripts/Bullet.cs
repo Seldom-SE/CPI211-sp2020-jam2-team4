@@ -9,17 +9,18 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        print("Created bullet!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(0, speed * Time.deltaTime, 0);
+        transform.position += transform.forward * Time.deltaTime * speed;
     }
 
     void OnCollisionEnter(Collision col)
     {
+        print("Destroyed bullet!");
         Destroy(gameObject);
     }
 }

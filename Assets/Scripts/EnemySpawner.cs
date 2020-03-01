@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnTime;
     public float spawnDelay;
     public AudioClip spawnZombie;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     private int enemyInRoom;
 

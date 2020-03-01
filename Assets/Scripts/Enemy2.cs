@@ -6,7 +6,7 @@ public class Enemy2 : MonoBehaviour
 {
     public GameObject powerUp;
     public AudioClip deadZombie;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     private int numShot;
 

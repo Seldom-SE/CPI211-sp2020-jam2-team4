@@ -8,7 +8,7 @@ public class Enemy1 : MonoBehaviour
 
     public GameObject powerUp;
     public AudioClip deadZombie;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
