@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
     public int IncrementZombiesKilled ()
     {
-        SetZombiesKilled(zombiesKilled);
+        SetZombiesKilled(zombiesKilled + 1);
         return zombiesKilled;
     }
 
