@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] ammoIndicators;
     public Text killCounter;
     public Text tutorialText;
+    public GameObject barrier;
 
     public GameObject bullet;
 
@@ -202,6 +203,7 @@ public class PlayerController : MonoBehaviour
             if (zombiesKilled >= 24)
             {
                 killCounter.text = "Climb the stairs to progress to the next floor!";
+                barrier.SetActive(false);
             }
             else
             {
