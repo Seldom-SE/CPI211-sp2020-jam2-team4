@@ -169,6 +169,12 @@ public class PlayerController : MonoBehaviour
         this.health = health;
         healthSlider.value = health;
         healthText.text = health.ToString();
+
+        if (health <= 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene("Game Over");
+        }
     }
 
     private void SetAmmo (int ammo)
