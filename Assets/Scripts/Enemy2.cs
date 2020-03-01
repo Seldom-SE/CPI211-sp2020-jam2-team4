@@ -19,28 +19,22 @@ public class Enemy2 : MonoBehaviour
     /* Shot or die */
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Bullet")
+        if (col.gameObject.CompareTag("Bullet"))
         {
             if (numShot < 2)
             {
                 numShot++;
             }
-            else if (numShot == 2)
+            else
             {
-                int killedEnemy = col.gameObject.GetComponent<PlayerController>().zombie2Killed;
-                if (killedEnemy < 2)
+                int killedEnemy = ++col.gameObject.GetComponent<PlayerController>().zombiesKilled;
+                if (killedEnemy % 3 == 0)
                 {
-                    killedEnemy++;
-                }
-                else
-                {
-                    killedEnemy = 0;
                     Instantiate(powerUp, transform.position, transform.rotation);
                 }
                 audioSource.PlayOneShot(deadZombie, 0.5f);
                 Destroy(gameObject);
             }
         }
-
     }
 }
