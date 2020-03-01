@@ -231,6 +231,8 @@ GameObject:
   - component: {fileID: 2499025776726770104}
   - component: {fileID: 5486599812022054082}
   - component: {fileID: 5795035809695883530}
+  - component: {fileID: 849357114621792111}
+  - component: {fileID: 1393794161099600319}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Untagged
@@ -287,6 +289,43 @@ CapsuleCollider:
   m_Height: 4.3264313
   m_Direction: 1
   m_Center: {x: 0, y: 1.6632156, z: 0}
+--- !u!195 &849357114621792111
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510125812661023659}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1393794161099600319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510125812661023659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc0876ff4b2fc54784f3924f8d135ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: {fileID: 0}
+  deadZombie: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1554714658104086569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,7 +1666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1433176419707720045}
   - component: {fileID: 5829703897027714110}
-  - component: {fileID: 1640757943709445246}
   m_Layer: 0
   m_Name: characterMedium
   m_TagString: Untagged
@@ -1745,21 +1783,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000023639761, y: -0.0022946456, z: -0.0004065642}
     m_Extent: {x: 0.018149793, y: 0.019757353, z: 0.005278914}
   m_DirtyAABB: 0
---- !u!114 &1640757943709445246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7701488922689715594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc0876ff4b2fc54784f3924f8d135ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUp: {fileID: 0}
-  deadZombie: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!1 &7862437133639894538
 GameObject:
   m_ObjectHideFlags: 0

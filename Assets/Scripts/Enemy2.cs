@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy2 : Enemy
 {
     public GameObject powerUp;
     public AudioClip deadZombie;
@@ -27,8 +27,8 @@ public class Enemy2 : MonoBehaviour
             }
             else
             {
-                PlayerController player = col.gameObject.GetComponent<PlayerController>();
-                int killedEnemy = player.IncrementZombiesKilled();
+                PlayerController playerController = player.GetComponent<PlayerController>();
+                int killedEnemy = playerController.IncrementZombiesKilled();
                 if (killedEnemy % 3 == 0)
                 {
                     Instantiate(powerUp, transform.position, transform.rotation);

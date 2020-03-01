@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject spawnee;
     public float spawnTime;
+    public GameObject player;
 
     private int spawns;
     private bool level3;
@@ -25,10 +26,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Instantiate(spawnee, transform.position, transform.rotation);
+        GameObject zombie = Instantiate(spawnee, transform.position, transform.rotation);
+        zombie.GetComponent<Enemy>().SetPlayer(player);
         spawns++;
 
-        if (spawns < 6)
+        if (level3 || spawns < 6)
         {
             Invoke("SpawnEnemy", Mathf.Max(spawnTime - Time.timeSinceLevelLoad * 0.1f, spawnTime * 0.3f));
         }
