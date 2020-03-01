@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public GameObject playerCam;
     public Slider healthSlider;
     public Text healthText;
+    public GameObject[] ammoIndicators;
 
     public float lookSensitivity = 1f;
     public float maxVerticalAngle = 60f;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         distToGround = GetComponent<Collider>().bounds.extents.y;
         SetHealth(maxHealth);
+        SetAmmo(ammo);
     }
 
     private void FixedUpdate()
@@ -73,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
+        bool mouseClick = Input.GetMouseButtonDown(0);
 
         //This moves the PLAYER gameobject's rotation
         if (mouseX != 0)
@@ -98,6 +101,10 @@ public class PlayerController : MonoBehaviour
              */
             if (newRotation.x < maxVerticalAngle || newRotation.x > 360 - maxVerticalAngle)
                 playerCam.transform.localEulerAngles = newRotation;
+        }
+        if (mouseClick && ammo > 0)
+        {
+            SetAmmo(ammo - 1);
         }
     }
 
@@ -133,6 +140,19 @@ public class PlayerController : MonoBehaviour
         this.health = health;
         healthSlider.value = health;
         healthText.text = health.ToString();
+    }
+
+    private void SetAmmo (int ammo)
+    {
+        this.ammo = ammo;
+        for (int i = 0; i < ammo; i++)
+        {
+            ammoIndicators[i].SetActive(true);
+        }
+        for (int i = ammo; i < ammoIndicators.Length; i++)
+        {
+            ammoIndicators[i].SetActive(false);
+        }
     }
 
     void OnCollisionEnter(Collision col)
